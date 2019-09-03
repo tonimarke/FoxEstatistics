@@ -161,3 +161,7 @@ body {
     width: 700px;
   }
 }
+  .modal-content {
+    background-color:  #e68a00;
+    border-radius: 5;
+  }
