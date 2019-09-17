@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Estatística</title>
+		<script src = "estat.js"></script>
+	</head>
+	<body>
+		<!--
+		Variavel Qualitativa: Nominal - QN
+		Variavel Qualitativa: Ordinal - QO
+		Variavel Quantitativa: Discreta - QD
+		Variavel Quantitativa: Continua - QC
+		-->
+		<form action="">
+			<input id="QN" type="radio" name="variavel" value="1"> Nominal 
+			<input id="QO" type="radio" name="variavel" value="2"> Ordinal
+			<input id="QD" type="radio" name="variavel" value="3"> Discreta
+			<input id="QC" type="radio" name="variavel" value="4"> Contínua
+			<br>
+		</form>
+		<p>
+			Nome da variável: <input type="text" id="variavel"/>
+		</p>
+		<p>
+			ROL <input type="text" id="rol"/> <button onclick = "criarRol(input, array)">Começar</button>
+		</p>
+		<form action="">
+			<input id="a" type="radio" name="v" value="amostral"> Amostra <input id="p" type="radio" name="v" value="popu"> População<br>
+		</form>
+	</body>
+</html>
