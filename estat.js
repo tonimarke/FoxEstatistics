@@ -18,14 +18,16 @@ function criarRol(input, array){
 				}
 				array[j + 1] = el;
 			}
+		return array;
 	}
-	else if(document.getElementById('QN').checked || document.getElementById('QO').checked){
+	else if (document.getElementById('QN').checked || document.getElementById('QO').checked){
 		for (i = 0; i < aux.length; i++){
 			array.push(aux[i]);
 		}
 		array.sort();
+		return array;
 	}
-	return array;
+	moda(array);
 }
 
 //MODA
@@ -47,7 +49,6 @@ function moda(array){
 	freq[contagem] = fAux;
 	elemento[contagem] = aux;
 	aux = freq[0];
-	console.log(elemento.length);
 	for(i = 0; i < freq.length; i++){
 		if(aux <= freq[i]){
 			if(aux < freq[i]){
@@ -62,8 +63,16 @@ function moda(array){
 			}
 		}
 	}
-	return m;
+	console.log(elemento);
+	console.log(freq);
 	//falta verificar para amodal  
+}
+
+/*MÉDIA
+function media(array){
+	if (document.getElementById('QD').checked || document.getElementById('QC').checked){
+		
+	}
 }
 
 //Intevalo de classes
@@ -103,11 +112,20 @@ return mediana;
 
 //VARIÂNCIA
 function variancia(array, val){
-	for(var i = 0; i < array.length; i++){
-		resp += Math.pow((parseFloat(array[i]) - val), 2);
+	if (getElementById('p').checked){
+		for(var i = 0; i < array.length; i++){
+			resp += Math.pow((parseFloat(array[i]) - val), 2);
+		}
+		resp = resp / array.length;
+		return resp;
 	}
-	resp = resp / array.length;
-	return resp;
+	else {
+		for(var i = 0; i < array.length; i++){
+			resp += Math.pow((parseFloat(array[i]) - val), 2);
+		}
+		resp = resp / (array.length -1);
+		return resp;	
+	}
 }
 
 //DESVIO PADRAO
@@ -120,4 +138,4 @@ function dp(resp){
 function coeficiente(desvP, val){
 	var cDP = (desvP/val) * 100;
 	return cDP;
-}
+}*/
