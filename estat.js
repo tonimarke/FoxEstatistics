@@ -1,10 +1,13 @@
-let input = [], m, desvP, array = [], val = 0, resp = 0, Fi, freq = [], elemento = [], objTabela = [];
-
+let input = [], m, val = 0, desvP, varian, array = [], resp = 0, Fi, freq = [], elemento = [], objTabela = [];
+let identificador, k, inClasse, copiaK = [];
+let vetorK = [];
+let FiContinuaCopia, varContinuaCopia, varContinuac2Copia, fAcumuladaCopia;
 //Criará o ROL
 function criarRol(input, array){
 	var i, el, j;
 	input = document.getElementById("rol").value;
-	var aux = input.split(";");
+	var aux = input.split("; ");
+
 	if (document.getElementById('QD').checked || document.getElementById('QC').checked){
 		for (i = 0; i < aux.length; i++){
 			array.push(parseFloat(aux[i]));
@@ -18,19 +21,28 @@ function criarRol(input, array){
 				}
 				array[j + 1] = el;
 			}
+			console.log(array);
+			moda(array);
+			media(array, elemento, freq);
+			mediana(array);
+			media(array, elemento, freq);
+			iClasses(array, Fi, k, vetorK);
+			criarTab(elemento, freq, objTabela, identificador, inClasse, copiaK);
+			mSeparatrizes(array, FiContinuaCopia, varContinuaCopia, varContinuac2Copia);
 	}
 	else if (document.getElementById('QN').checked || document.getElementById('QO').checked){
 		for (i = 0; i < aux.length; i++){
 			array.push(aux[i]);
 		}
 		array.sort();
+		moda(array);
+		mediana(array)
+		media(array, elemento, freq);
+		mSeparatrizes(array, FiContinuaCopia, varContinuaCopia, varContinuac2Copia)
 	}
-	moda(array);
-	media(array, elemento, freq);
-	criarTab(elemento, array, freq, objTabela);
 }
 
-//MODA
+//MODA (falta verificar amodal)
 function moda(array){
 	var i, contagem = 0, aux = array[0], fAux = 1, m = "";
 
@@ -63,122 +75,230 @@ function moda(array){
 			}
 		}
 	}
-	console.log(elemento);
-	console.log(freq);
+	console.log("moda: " + m);
+	return m;
 	//falta verificar para amodal  
 }
 
-//MÉDIA
+// MÉDIA ARITMÉTICA fórmula do %DP
+function mediaArt(){
+	var pLin = 0;
+
+	for (i = 0; i < array.length; i++){
+		pLin += array[i];
+	}
+
+	val = pLin / array.length;
+	return val;
+}
+
+//MÉDIA PONDERADA
 function media(array, elemento, freq){
 	var soma = 0;
 	if (document.getElementById('QD').checked || document.getElementById('QC').checked){
 		for (i = 0; i < elemento.length; i++){
 			soma += elemento[i] * freq[i];
 		}
-
+		console.log("media" + soma/array.length);
+		return soma / array.length;
 	}
-	console.log(soma/array.length);
+	else if (document.getElementById('QN').checked || document.getElementById('QO').checked){
+		console.log("Media: N/A");
+		return "N/A";
+	}
 }
 
-/*//MEDIANA
+//MEDIANA
 function mediana(array){
-	var mediana;
-	var p1;
-	if (document.getElementById('QD').checked){
-		if(array.length % 2 == 0){
-			p1 = array.length/2;
-			var p2 = array.length/2+1;
-			mediana = (parseFloat(array[p1-1]) + parseFloat(array[p2-1]))/2;
+	var p2, p1 = array.length/2;
+	if (document.getElementById('QD').checked || document.getElementById('QC').checked){
+		if(p1 % 2 == 0){
+			p2 = p1;
+			console.log("mediana: " + array[p1] + " e " + array[p1-1]);
+			return array[p1] + " e " + array[p1-1];
 		}
-			else{
-				p1 = (array.length+1)/2;
-				mediana = parseFloat(array[p1-1]);
-			}
-	}
-	else if(document.getElementById('QC').checked){
-
-	}
-return mediana;
-}*/
-
-/*//Intevalo de classes
-function iClasses(array, Fi){
-	var Fi = array.length;
-	var AA = array[Fi-1] - array[0] + 1;
-	var h;
-	var k = Math.round(Math.sqrt(Fi));
-
-	if (AA % 2 == 0){
-		h = (AA) / k;
-		console.log(Math.ceil(h));
-		return Math.ceil(h);
-	}
-	else{
-		h = (AA + 1) / k;
-		console.log(Math.ceil(h));
-		return Math.ceil(h);
-	}
-}*/
-
-//CRIA TABELA
-function criarTab(elemento, array, freq, objTabela){
-	var varPesquisadas = [], fSimples = [], fRelativa = [], fAcumulada = [];
-	var total = 0, frPercem = [], teste = [3, 5, 4, 7];
-
-	for (i = 0; i < elemento.length; i++){
-		total += elemento[i];
-	}
-
-		if (document.getElementById('QN').checked || document.getElementById('QO').checked){
-			objTabela.varPesquisadas = elemento;
-			objTabela.fSimples = freq;
-
-			for (i = 0; i < freq.length; i++){
-
-				frPercem.push(teste[i]/total);
-			}
-
-			objTabela.PfrPercemsvmkl = frPercem;
-			console.table(objTabela);
-				/*objTabela.push({
-					varPesquisadas: elemento[i];
-					fSimples: freq[i];
-					fRelativa: freq[i]/total;
-					fAcumulada: soma += freq[i];
-				});
-				objTabela.varPesquisadas.push(elemento[i]);
-				objTabela.fSimples.push(freq[i]);
-				objTabela.fRelativa.push(freq[i] / total);
-				objTabela.fAcumulada.push(soma += freq[i]);*/
+		else{
+			p2 = Math.round(p1);
+			console.log("mediana" + array[p2]);
+			return array[p2];
 		}
+	}
 }
 
-/*//VARIÂNCIA
+//Intevalo de classes
+function iClasses(array, Fi, k, vetorK){
+	var Fi = array.length-1;
+	var AA = (array[Fi]-array[0]) + 1;
+	var kTemp = Math.sqrt(Fi); 
+
+	k = Math.trunc(kTemp);
+
+	vetorK = [k-1, k, k+1];
+	copiaK = [...vetorK];
+
+	if (AA % vetorK[1] == 0){
+		identificador = 1;
+		inClasse = AA / vetorK[1];
+	}
+		else if (AA % vetorK[2] == 0){
+			identificador = 2;
+			inClasse = AA / vetorK[2];
+		}
+			else if (AA % vetorK[0] == 0){
+				identificador = 0;
+				inClasse = AA / vetorK[0];
+			}
+}
+
+//CRIA TABELA (trocar nomes dos objetos e lógica da contínua)
+function criarTab(elemento, freq, objTabela, identificador, inClasse, copiaK){
+	var varContinua = [], varContinuac2 = [], contador, FiContinua = [];
+	var total = 0, frPercem = [], fAcumulada = [], soma = 0, fAcumuladapercem = [], aux1 = parseInt(elemento[0]);
+	var aux = 0;
+	FiContinuaCopia = [...FiContinua];
+	varContinuaCopia = [...varContinua];
+	varContinuac2Copia = [...varContinuac2];
+	fAcumuladaCopia = [...fAcumulada]
+
+	var linha = copiaK;
+
+	for (i = 0; i < freq.length; i++){
+		total += freq[i];
+	}
+
+	if (document.getElementById('QN').checked || document.getElementById('QO').checked || document.getElementById('QD').checked){
+
+		objTabela.varPesquisadas = elemento;
+		objTabela.fSimples = freq;
+			for (i = 0; i < freq.length; i++){
+				frPercem.push((freq[i] / total * 100).toFixed(1));
+				fAcumulada.push(soma += freq[i]);
+				fAcumuladapercem.push((aux += freq[i] / total * 100).toFixed(1));
+			}
+		objTabela.PfrPercemsvmkl = frPercem;
+		objTabela.fAcumuladassdk = fAcumulada;
+		objTabela.fAcumuladapercemdfdsm = fAcumuladapercem;
+		console.table(objTabela);
+		}
+
+	else{
+		if (identificador == 1){
+			for (i = 0; i < linha[1]; i++){
+				varContinua.push(aux1);
+				aux1 += inClasse;
+				varContinuac2.push(aux1);
+			}
+		}
+			else if (identificador == 2){
+					for (i = 0; i < linha[2]-1; i++){
+						varContinua.push(aux1);
+						aux1 += inClasse;
+						varContinuac2.push(aux1);
+					}
+			}
+				else if (identificador == 0){
+					for (i = 0; i < linha[0]-1; i++){
+						varContinua.push(aux1);
+						aux1 += inClasse;
+						varContinuac2.push(aux1);
+					}
+				}
+		objTabela.primeiraC = varContinua;
+		objTabela.segundaC = varContinuac2;
+		for (var i = 0; i < varContinuac2.length; i++) {
+			contador = 0;
+			for (var j = 0; j < array.length; j++) {
+				if (array[j] >= varContinua[i] && array[j] < varContinuac2[i]){
+					contador++;
+				}
+			}
+			FiContinua.push(contador);
+		}
+		objTabela.FiContinuaajksk = FiContinua;
+		for (i = 0; i < varContinua.length; i++){
+			frPercem.push((FiContinua[i]/total*100).toFixed(1));
+			fAcumulada.push(soma += FiContinua[i]);
+			fAcumuladapercem.push((aux += FiContinua[i]/total*100).toFixed(1));
+		}
+		objTabela.PfrPercemsvmkl = frPercem;
+		objTabela.fAcumuladassdk = fAcumulada;
+		objTabela.fAcumuladapercemdfdsm = fAcumuladapercem;
+		console.table(objTabela);
+
+	}
+}
+
+//VARIÂNCIA
 function variancia(array, val){
+	mediaArt();
+	//variância populacional
 	if (document.getElementById('p').checked){
 		for(var i = 0; i < array.length; i++){
-			resp += Math.pow((parseFloat(array[i]) - val), 2);
+			resp += Math.pow((parseFloat((array[i])-val)), 2);
 		}
-		resp = resp / array.length;
-		return resp;
+		varian = resp / array.length;
+		console.log("variancia: " + varian);
+		return varian;
 	}
-	else {
+
+	//variância amostral
+	else if (document.getElementById('a').checked){
 		for(var i = 0; i < array.length; i++){
-			resp += Math.pow((parseFloat(array[i]) - val), 2);
+			resp += Math.pow((parseFloat((array[i])-val)), 2);
 		}
-		resp = resp / (array.length -1);
-		return resp;	
+		varian = resp / (array.length - 1);
+		console.log("variancia: " + varian);
+		return varian;
 	}
 }
 
 //DESVIO PADRAO
-function dp(resp){
-	desvP = Math.sqrt(resp);
+function dP(varian){
+	desvP = Math.sqrt(varian);
+	console.log("desvio: " + desvP);
 	return desvP;
 }
 
 //%DP
-function coeficiente(desvP, val){
-	var cDP = (desvP/val) * 100;
+function coefDP(desvP, val){
+	var cDP = (desvP / val) * 100;
+	console.log("console" + cDP);
 	return cDP;
-}*/
+}
+
+//MEDIDAS SEPARATRIZES
+function mSeparatrizes(array, FiContinuaCopia, varContinuaCopia, varContinuac2Copia, fAcumfAcumuladaCopia){
+	var til = document.getElementById("sep").value;
+	var tamanho = array.length;
+	var classe;
+	var FiCAux = FiContinuaCopia;
+	var posicao = Math.trunc(tamanho * (til/100));
+
+	for (var i = 0; i < FiCAux.length; i++){
+		if (til >= FiCAux){
+			classe = i;
+		}
+	}
+
+	var lpk = varContinuaCopia[classe];
+	var facAnterior = fAcumfAcumuladaCopia-1;
+
+	if (facAnterior < 0 || facAnterior == 0){
+		facAnterior = 0;
+	}
+
+	var fpk = FiCAux[classe];
+	var Lpk = varContinuac2Copia[classe];
+	var hpk = Lpk - lpk;
+
+	var msContinua = lpk + ((posicao - facAnterior) / fpk) * hpk;
+
+	if (document.getElementById('QN').checked || document.getElementById('QO').checked || document.getElementById('QD').checked){
+		console.log("medida separatriz" + posicao);
+		return posicao;
+	}
+	else {
+		console.log("medida separatriz" + msContinua);
+		return msContinua;
+	}
+}
