@@ -74,12 +74,15 @@
                                 <form id="uniformeForm" class="container-fluid" style="background-color: #ede6ed;margin-top: 15px;">
                                     <div class="col">
                                         <div class="form-row">
-                                            <div class="col" style="margin-right: 5px;"><label class="text-left d-xl-flex justify-content-xl-start">Intervalo de análise:</label><select class="form-control" required=""><optgroup label="Selecione o intervalo"><option value="1">Maior que</option><option value="2">Entre</option><option value="3">Menor que</option></optgroup></select>
+                                            <div class="col" style="margin-right: 5px;"><label class="text-left d-sm-flex d-xl-flex justify-content-sm-start justify-content-xl-start">Intervalo de análise:</label><select class="form-control" required=""><optgroup label="Selecione o intervalo"><option value="1">Maior que</option><option value="2">Entre</option><option value="3">Menor que</option></optgroup></select>
                                                 <label
-                                                    class="text-left d-xl-flex justify-content-xl-start">Ponto Mínimo</label>
-                                                    <div class="form-group"><input class="form-control form-control" type="text" id="pontoMinUniforme" inputmode="numeric" required=""></div><label class="text-left d-xl-flex justify-content-xl-start">Quantidade</label><input class="form-control form-control"
-                                                        type="text" id="quantidadeUniforme" inputmode="numeric" required=""><label class="text-left d-xl-flex justify-content-xl-start">Ponto Máximo</label><input class="form-control form-control" type="text"
-                                                        id="pontoMaxUniforme" inputmode="numeric" required=""></div>
+                                                    class="text-left d-sm-flex d-xl-flex justify-content-sm-start justify-content-xl-start">Ponto Mínimo</label>
+                                                    <div class="form-group"><input class="form-control form-control" type="text" id="pontoMinUniforme" inputmode="numeric" required=""></div><label class="text-left d-sm-flex d-xl-flex justify-content-sm-start justify-content-xl-start">Quantidade</label>
+                                                    <input
+                                                        class="form-control form-control" type="text" id="quantidadeUniforme" inputmode="numeric" required=""><label class="text-left d-sm-flex d-xl-flex justify-content-sm-start justify-content-xl-start">Ponto Máximo</label><input class="form-control form-control" type="text" id="pontoMaxUniforme" inputmode="numeric"
+                                                            required=""><label class="text-left d-sm-flex d-xl-flex justify-content-sm-start justify-content-xl-start" for="deX">De (X) - [Entre]</label><input class="form-control" type="text" id="deX">
+                                                        <label
+                                                            class="text-left d-sm-flex d-xl-flex justify-content-sm-start justify-content-xl-start" for="ateY">Até (Y) - [Entre]</label><input class="form-control form-control" type="text" id="ateY" inputmode="numeric" required=""></div>
                                         </div>
                                     </div><button class="btn btn-secondary btn-orange" id="calcularUniforme" type="submit">Calcular</button></form>
                             </div>
