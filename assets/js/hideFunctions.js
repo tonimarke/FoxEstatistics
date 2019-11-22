@@ -1,6 +1,6 @@
 $(document).ready(function(){    
     $("#rowCorrelacao").hide();//esconde correlação
-    $("#rowResultadoCorrelacao").hide();
+    $("#rowResultadoCorrelacao").hide(200);
     $("#btnCorrelacao").click(function () {//mostra correlação ao clicar no botão
          $("#rowDescritiva").hide('slow');
          $("#rowProbabilidade").hide('slow'); //esconde outras funções abertas
@@ -19,6 +19,7 @@ $(document).ready(function(){
      $("#btnProbabilidade").click(function () {
          $("#rowDescritiva").hide('slow');
          $("#rowCorrelacao").hide('slow');//esconde outras funções abertas
+         $("#rowResultadoCorrelacao").hide(200);
          $("#rowProbabilidade").show(400); //mostra probabilidade
     });
 });
@@ -26,6 +27,7 @@ $(document).ready(function(){
 $(document).ready(function(){ 
     $("#rowBinomial").hide(); //deixa oculta binomial
      $("#btnBinomial").click(function (){
+         $("#rowResultadoCorrelacao").hide(200);
          $("#rowNormal").hide('slow');
          $("#rowUniforme").hide('slow');//oculta outras funções abertas
          $("#rowBinomial").show(400); //exibe a função binomial
