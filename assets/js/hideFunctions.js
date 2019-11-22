@@ -1,8 +1,13 @@
-$(document).ready(function(){                                       $("#rowCorrelacao").hide();//esconde correlação
-     $("#btnCorrelacao").click(function () {//mostra correlação ao clicar no botão
+$(document).ready(function(){    
+    $("#rowCorrelacao").hide();//esconde correlação
+    $("#rowResultadoCorrelacao").hide();
+    $("#btnCorrelacao").click(function () {//mostra correlação ao clicar no botão
          $("#rowDescritiva").hide('slow');
          $("#rowProbabilidade").hide('slow'); //esconde outras funções abertas
          $("#rowCorrelacao").show(400); //mostra correlação
+    });
+    $("#calculaCorrelacao").click(function () {
+        $("#rowResultadoCorrelacao").show(200);
     });
 });
 
@@ -38,10 +43,12 @@ $(document).ready(function(){
 
 $(document).ready(function(){ 
      $("#btnUniforme").click(function (){
+
          $("#rowBinmomial").hide('slow');
          $("#rowNormal").hide('slow');//oculta as outras funções abertas
          $("#rowUniforme").show(400); //exibe a função uniforme
     });
+ 
 });
 
 $(document).ready(function(){
