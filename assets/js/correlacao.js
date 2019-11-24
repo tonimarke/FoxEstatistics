@@ -1,6 +1,6 @@
 $(document).ready(function(){     //faz ficar pronto ao carregar o documento
 
-    let chart = //document.querySelector('canvas').chart; //jQuery para atualizar o canvas com os valores desejados
+    //let chart = document.querySelector('canvas').chart; //jQuery para atualizar o canvas com os valores desejados
     
     $(document).on('click', function (){
         
@@ -71,6 +71,18 @@ $(document).ready(function(){     //faz ficar pronto ao carregar o documento
         console.log(reta)
 
 	    document.getElementById('equacaoCorrelacao').innerHTML = "Y = " + a + " * X " + " + " + b;
+        //Projeção com X
+        $("#projetaComX").click(function () {
+            var xInserido = document.getElementById('inputProjecaoComX').value
+            var SaidaProjecaoComX = (Number(a) * Number(xInserido)) + Number(b);
+            document.getElementById('resultadoProjecaoComX').innerHTML = "A projeção de Y para X = " + xInserido + ", será = " + SaidaProjecaoComX
+	    });
+        
+        $("#projetaComY").click(function () {
+            var yInserido = document.getElementById('inputProjecaoComY').value
+            var SaidaProjecaoComY = ((Number(yInserido) - Number(b) ) / Number(a));
+            document.getElementById('resultadoProjecaoComY').innerHTML = "A projeção de X para Y = " + yInserido + ", será = " + SaidaProjecaoComY;
+	    });
 
 	    $('#divCanvas').append('<canvas id="myChart" width="400" height="400"></canvas>');
 
