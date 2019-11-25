@@ -68,24 +68,22 @@ $(document).ready(function(){
                 var probUniMaior = valor;
                 var probabilidade = ((1 / (b - a)) * (b - probUniMaior)) * 100;
                 console.log("probuni" + probabilidade);
-                saidaUniforme();
                 return probabilidade;
             case '2':
                 var aEntre = document.getElementById('deX').value;
-                var bEntre = document.getElementById('ateY').value;
+                var bEntre = document.getElementById('deY').value;
                 var probabilidade = ((1 / (b - a)) * (bEntre - aEntre)) * 100;
                 console.log("probuni" + probabilidade);
-                saidaUniforme();
                 return probabilidade;
             case '3':
                 var probUniMenor = valor;
                 var probabilidade = ((1 / (b - a)) * (probUniMenor - a)) * 100;
                 console.log("probuni" + probabilidade);
-                saidaUniforme();
+                saida();
                 return probabilidade;
         }
 
-        function saidaUniforme(){
+        function saida(){
         mediaPU(a, b);
         varianciaPU(a, b);
         dpPU(varianciaUniforme);
@@ -96,19 +94,19 @@ $(document).ready(function(){
 
     //PROBABILIDADE UNIFORME: MÉDIA
     function mediaPU(a, b){
-        mediaUniforme = (a + b) / 2; //att
+        mediaUniforme = (b - a) / 2;
         return mediaUniforme;
     }
 
     //PROBABILIDADE UNIFORME: VARIÂNCIA
     function varianciaPU(a, b){
-        varianciaUniforme = Math.pow((b - a), 2) / 12;
+        varianciaUniforme = ((b - a) ** 2) / 12;
         return varianciaUniforme;
     }
 
     //PROBABILIDADE UNIFORME: DP
-    function dpPU(varianciaUniforme){
-        desvioPadraoUniforme = Math.sqrt(varianciaUniforme);
+    function dpPU(variancia){
+        desvioPadraoUniforme = Math.sqrt(variancia);
         return desvioPadraoUniforme;
     }
 
