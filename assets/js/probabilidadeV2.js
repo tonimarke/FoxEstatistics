@@ -102,13 +102,13 @@ $(document).ready(function(){
 
     //PROBABILIDADE UNIFORME: VARIÂNCIA
     function varianciaPU(a, b){
-        varianciaUniforme = ((b - a) ** 2) / 12;
+        varianciaUniforme = Math.pow((b - a), 2) / 12;
         return varianciaUniforme;
     }
 
     //PROBABILIDADE UNIFORME: DP
-    function dpPU(variancia){
-        desvioPadraoUniforme = Math.sqrt(variancia);
+    function dpPU(varianciaUniforme){
+        desvioPadraoUniforme = Math.sqrt(varianciaUniforme);
         return desvioPadraoUniforme;
     }
 
