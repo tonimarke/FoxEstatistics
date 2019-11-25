@@ -86,13 +86,13 @@ function probUniforme(){
 
 //PROBABILIDADE UNIFORME: MÉDIA
 function mediaPU(a, b){
-    mediaUniforme = (b - a) / 2;
+    mediaUniforme = (b + a) / 2;
     return mediaUniforme;
 }
 
 //PROBABILIDADE UNIFORME: VARIÂNCIA
 function varianciaPU(a, b){
-    varianciaUniforme = ((b - a) ** 2) / 12;
+    varianciaUniforme = Math.pow((b - a), 2) / 12;
     return varianciaUniforme;
 }
 
