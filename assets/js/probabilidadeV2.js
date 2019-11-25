@@ -58,8 +58,8 @@ $(document).ready(function(){
 
     // function probUniforme(){ acionado pelo jqyery
         var selectUniforme = document.getElementById("selectUniforme").value;
-        a = document.getElementById('pontoMinUniforme').value;
-        b = document.getElementById('pontoMaxUniforme').value;
+        a = parseInt(document.getElementById('pontoMinUniforme').value);
+        b = parseInt(document.getElementById('pontoMaxUniforme').value);
         var valor = document.getElementById('quantidadeUniforme').value;
 
         //digita o maximo e o mínimo o usuario seleciona mais que/entre/menor que
@@ -96,7 +96,7 @@ $(document).ready(function(){
 
     //PROBABILIDADE UNIFORME: MÉDIA
     function mediaPU(a, b){
-        mediaUniforme = (a + b) / 2; //att
+        mediaUniforme = (a + b) / 2;
         return mediaUniforme;
     }
 
