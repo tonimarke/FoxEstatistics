@@ -96,7 +96,7 @@ $(document).ready(function(){
 
     //PROBABILIDADE UNIFORME: MÉDIA
     function mediaPU(a, b){
-        mediaUniforme = (b - a) / 2;
+        mediaUniforme = (b + a) / 2;
         return mediaUniforme;
     }
 
