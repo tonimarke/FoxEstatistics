@@ -68,12 +68,14 @@ $(document).ready(function(){
                 var probUniMaior = valor;
                 var probabilidade = ((1 / (b - a)) * (b - probUniMaior)) * 100;
                 console.log("probuni" + probabilidade);
+                saida();
                 return probabilidade;
             case '2':
                 var aEntre = document.getElementById('deX').value;
-                var bEntre = document.getElementById('deY').value;
+                var bEntre = document.getElementById('ateY').value;
                 var probabilidade = ((1 / (b - a)) * (bEntre - aEntre)) * 100;
                 console.log("probuni" + probabilidade);
+                saida();
                 return probabilidade;
             case '3':
                 var probUniMenor = valor;
