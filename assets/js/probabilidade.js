@@ -97,8 +97,8 @@ function varianciaPU(a, b){
 }
 
 //PROBABILIDADE UNIFORME: DP
-function dpPU(variancia){
-    desvioPadraoUniforme = Math.sqrt(variancia);
+function dpPU(varianciaUniforme){
+    desvioPadraoUniforme = Math.sqrt(varianciaUniforme);
     return desvioPadraoUniforme;
 }
 
