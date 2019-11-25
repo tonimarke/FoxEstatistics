@@ -61,14 +61,14 @@ $(document).ready(function(){     //faz ficar pronto ao carregar o documento
 	    var xLinha = (somaX/tamanhoVetor).toFixed(2);//utiliza-se para se obter o valor de b
 	    var b = (yLinha - a * xLinha).toFixed(2);
 
-	    console.log(tamanhoVetor + ";" + xLinha + ";" + yLinha)
+	   // console.log(tamanhoVetor + ";" + xLinha + ";" + yLinha)
 
 	    //console.log("soma, somaY, produto, xQuadrado, yQuadrado são respectivamente: " + somaX + ";" + somaY + ";" + produtoXY + ";" + xQuadrado + ";" + yQuadrado )
         
         reta=[
 	        {x:(yMin-b)/a,  y:yMin},
 	        {x:(yMax-b)/a,  y:yMax}]
-        console.log(reta)
+        //console.log(reta)
 
 	    document.getElementById('equacaoCorrelacao').innerHTML = "Y = " + a + " * X " + " + " + b;
         //Projeção com X

@@ -80,25 +80,25 @@ function probUniforme(){
     varianciaPU(a, b);
     dpPU(varianciaUniforme);
     cvPU(desvioPadraoUniforme, mediaUniforme);
-    document.getElementById("probabilidadeBinom").innerHTML = ("Probabilidade: " + probabilidade + "%" + "<br>" + "Media: "+ mediaUniforme + "<br>" + "Variância: " + varianciaUniforme + "<br>" + "Desvio Padrão : " + desvioPadraoUniforme + "<br>" + "Coeficiente de Variação" + CVUniforme + "<br>");
+    document.getElementById("probabilidadeUnif").innerHTML = ("Probabilidade: " + probabilidade + "%" + "<br>" + "Media: "+ mediaUniforme + "<br>" + "Variância: " + varianciaUniforme + "<br>" + "Desvio Padrão : " + desvioPadraoUniforme + "<br>" + "Coeficiente de Variação" + CVUniforme + "<br>");
 
 }
 
 //PROBABILIDADE UNIFORME: MÉDIA
 function mediaPU(a, b){
-    mediaUniforme = (b + a) / 2;
+    mediaUniforme = (b - a) / 2;
     return mediaUniforme;
 }
 
 //PROBABILIDADE UNIFORME: VARIÂNCIA
 function varianciaPU(a, b){
-    varianciaUniforme = Math.pow((b - a), 2) / 12;
+    varianciaUniforme = ((b - a) ** 2) / 12;
     return varianciaUniforme;
 }
 
 //PROBABILIDADE UNIFORME: DP
-function dpPU(varianciaUniforme){
-    desvioPadraoUniforme = Math.sqrt(varianciaUniforme);
+function dpPU(variancia){
+    desvioPadraoUniforme = Math.sqrt(variancia);
     return desvioPadraoUniforme;
 }
 
