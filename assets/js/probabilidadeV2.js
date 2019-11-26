@@ -1,54 +1,61 @@
 $(document).ready(function(){    
-    $("#calcularBinomial").click(function () {
     //PROBABILIDADE BINOMIAL
+    $("#calcularBinomial").click(function () {
     let resultado = 0;
-    let mediaBinomial, dpUniforme, probabilidadepercem, k, n, p, q;
+    let mediaBinomial, dpUniforme, k, n, p, q;
 
 //    function binomial(){    iniciado pelo jquery
         //variaveis
-        var input = document.getElementById("evento_prob").value;
-        var aux = input.split("; ");
-        var evento = [];	
-            for (i = 0; i < aux.length; i++){
-                evento.push(parseFloat(aux[i]));
+        k = parseFloat(document.getElementById("valorK").value);
+        n = parseFloat(document.getElementById("valorN").value);
+        p = parseFloat(document.getElementById("valorP").value);
+        q = 1 - p;
+        console.log("q"+q);
+        var fatorial = function(num){
+            if (num === 0) {
+                return 1;
             }
-        k = evento.length;
-        n = document.getElementById("valorN").value;
-        p = document.getElementById("valorK").value;
-        q = document.getElementById("valorP").value;
+            else{
+                var resp = 1;
+                for (var i = 1; i <= num; i++) {
+                    resp *= i;  
+                }
+                console.log("fato" + resp);
+                return resp;
+            }
+        };
 
-        //"processamento"
-        var probabilidade = 0;
-        for (let i = 0; i < k.length; i++) {
-            probabilidade += analiseCombinatoria(n, k[i]) * Math.pow(p, k[i]) * Math.pow(q, n - k[i]);
-        }
+    for (let i = 0; i < k; i++) {
+        resultado += analiseCombinatoria(n, k[i]) * Math.pow(p, k[i]) * Math.pow(q, n - k[i]);
+    }
+            //resultados
+            mediaPB(n, p);
+            desvioPadrao_uniforme(n, p, q);
+            var resultadoPorcent = (resultado * 100).toFixed(2);
+            document.getElementById("probabilidadeBinom").innerHTML = ("Probabilidade: " + resultadoPorcent + "<br>" + "Media: "+ mediaBinomial + "<br>" + "Desvio Padrão : " + dpUniforme + "<br>");
+    
+// Analise Combinatoria
+function analiseCombinatoria(n, k){
+    let resultado = 0;
 
-        //resultados
-        mediaPB(n, p);
-        desvioPadrao_uniforme(n, p, q);
-        probabilidadepercem = (probabilidade * 100).toFixed(2);
-        document.getElementById("probabilidadeBinom").innerHTML = ("Probabilidade: " + probabilidadepercem + "<br>" + "Media: "+ mediaBinomial + "<br>" + "Desvio Padrão : " + dpUniforme + "<br>");
-//    }
+    resultado = fatorial(n) / (fatorial(k) * (fatorial(n - k)));
+    return resultado
+}
 
     //PROBABILIDADE BINOMIAL: MÉDIA
     function mediaPB(n, p){
         mediaBinomial = n * p;
+        console.log("mediabi" + mediaBinomial);
         return mediaBinomial;
     }
     //PROBABILIDADE BINOMIAL: DP
     function desvioPadrao_uniforme(n, p, q){
         dpUniforme = Math.sqrt(n * p * q);
+        console.log("dp" + dpUniforme);
         return dpUniforme;
     }
 
-    function analiseCombinatoria(n, k){
-
-        resultado = fatorial(n) / (fatorial(k) * (fatorial(n - k)));
-
-        return resultado;
-    }
-
-    });
+});
 
     //PROBABILIDADE UNIFORME
 
