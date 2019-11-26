@@ -56,9 +56,6 @@ $(document).ready(function(){
 					media(array, elemento, freq);
 					mediana(array);
 					criarTab(elemento, freq, intervalo_classe);	
-					variancia(array, mediaP, resp);
-					dP(varian);
-					coefDP(desvP, mediaP);
 					mSeparatrizes(array, FiContinuaCopia, varContinuaCopia, varContinuac2Copia, fAcumuladaCopia);
 				
 					//exibição da tabela
